@@ -3,7 +3,7 @@ export const PLANS = [
         name: 'Free',
         slug: 'free',
         quota: 10,
-        pagesPerPdf: 5,
+        pagesPerPdf: 50,
         price: {
             amount: 0,
             priceIds: {
@@ -16,11 +16,11 @@ export const PLANS = [
         name: 'Pro',
         slug: 'pro',
         quota: 50,
-        pagesPerPdf: 25,
+        pagesPerPdf: 100,
         price: {
-            amount: 14,
+            amount: 499,
             priceIds: {
-                test: 'price_1NuEwTA19umTXGu8MeS3hN8L',
+                test: 'price_1OrpqpSDyB4sLyQvOnYrcwE9',
                 production: '',
             },
         },

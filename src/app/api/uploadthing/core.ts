@@ -1,21 +1,23 @@
-import { db } from '@/db'
-import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server'
-import { createUploadthing, type FileRouter } from 'uploadthing/next'
+//
 
+import { PLANS } from '@/config/stripe'
+import { db } from '@/db'
+import { getPinecone } from '@/lib/pinecone'
+import { getUserSubscriptionPlan } from '@/lib/stripe'
+import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server'
 import { PDFLoader } from 'langchain/document_loaders/fs/pdf'
 import { OpenAIEmbeddings } from 'langchain/embeddings/openai'
 import { PineconeStore } from 'langchain/vectorstores/pinecone'
-import { getPineconeClient } from '@/lib/pinecone'
-import { getUserSubscriptionPlan } from '@/lib/stripe'
-import { PLANS } from '@/config/stripe'
+import { createUploadthing, type FileRouter } from 'uploadthing/next'
 
 const f = createUploadthing()
 
 const middleware = async () => {
     const { getUser } = getKindeServerSession()
     const user = getUser()
-
-    if (!user || !user.id) throw new Error('Unauthorized')
+    if (!user || !user.id) {
+        throw new Error('Unauthorized')
+    }
 
     const subscriptionPlan = await getUserSubscriptionPlan()
 
@@ -33,20 +35,20 @@ const onUploadComplete = async ({
         url: string
     }
 }) => {
-    const isFileExist = await db.file.findFirst({
+    const isFileExists = await db.file.findFirst({
         where: {
             key: file.key,
         },
     })
 
-    if (isFileExist) return
+    if (isFileExists) return
 
     const createdFile = await db.file.create({
         data: {
             key: file.key,
-            name: file.name,
             userId: metadata.userId,
             url: `https://uploadthing-prod.s3.us-west-2.amazonaws.com/${file.key}`,
+            name: file.name,
             uploadStatus: 'PROCESSING',
         },
     })
@@ -55,15 +57,19 @@ const onUploadComplete = async ({
         const response = await fetch(
             `https://uploadthing-prod.s3.us-west-2.amazonaws.com/${file.key}`,
         )
-
         const blob = await response.blob()
-
         const loader = new PDFLoader(blob)
-
-        const pageLevelDocs = await loader.load()
+        const pageLevelDocs = (await loader.load()).map((doc) => {
+            return {
+                ...doc,
+                metadata: {
+                    ...doc.metadata,
+                    'file.id': createdFile.id,
+                },
+            }
+        })
 
         const pagesAmt = pageLevelDocs.length
-
         const { subscriptionPlan } = metadata
         const { isSubscribed } = subscriptionPlan
 
@@ -86,9 +92,9 @@ const onUploadComplete = async ({
             })
         }
 
-        // vectorize and index entire document
-        const pinecone = await getPineconeClient()
-        const pineconeIndex = pinecone.Index('quill')
+        const pineconeIndex = await getPinecone
+            .Index('profilehub')
+            .namespace(metadata.userId)
 
         const embeddings = new OpenAIEmbeddings({
             openAIApiKey: process.env.OPENAI_API_KEY,
@@ -96,7 +102,6 @@ const onUploadComplete = async ({
 
         await PineconeStore.fromDocuments(pageLevelDocs, embeddings, {
             pineconeIndex,
-            namespace: createdFile.id,
         })
 
         await db.file.update({
@@ -107,7 +112,8 @@ const onUploadComplete = async ({
                 id: createdFile.id,
             },
         })
-    } catch (err) {
+    } catch (error) {
+        console.log('error: ', error)
         await db.file.update({
             data: {
                 uploadStatus: 'FAILED',
