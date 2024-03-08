@@ -4,6 +4,7 @@ import { ArrowRight, Menu } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import ThemeSwitch from './ThemeSwitch'
 
 const MobileNav = ({ isAuth }: { isAuth: boolean }) => {
     const [isOpen, setOpen] = useState<boolean>(false)
@@ -24,14 +25,18 @@ const MobileNav = ({ isAuth }: { isAuth: boolean }) => {
 
     return (
         <div className="sm:hidden">
-            <Menu
-                onClick={toggleOpen}
-                className="relative z-50 h-5 w-5 text-zinc-700"
-            />
-
+            <div className="flex flex-row gap-3 justify-center items-center">
+                <li>
+                    <ThemeSwitch />
+                </li>
+                <Menu
+                    onClick={toggleOpen}
+                    className="relative z-50 h-5 w-5 text-secondary-foreground"
+                />
+            </div>
             {isOpen ? (
                 <div className="fixed animate-in slide-in-from-top-5 fade-in-20 inset-0 z-0 w-full">
-                    <ul className="absolute bg-white border-b border-zinc-200 shadow-xl grid w-full gap-3 px-10 pt-20 pb-8">
+                    <ul className="absolute bg-background border-b border-b-border shadow-xl grid w-full gap-3 px-10 pt-20 pb-8">
                         {!isAuth ? (
                             <>
                                 <li>
@@ -46,7 +51,7 @@ const MobileNav = ({ isAuth }: { isAuth: boolean }) => {
                                         <ArrowRight className="ml-2 h-5 w-5" />
                                     </Link>
                                 </li>
-                                <li className="my-3 h-px w-full bg-gray-300" />
+                                <li className="my-3 h-px w-full bg-border" />
                                 <li>
                                     <Link
                                         onClick={() =>
@@ -58,7 +63,7 @@ const MobileNav = ({ isAuth }: { isAuth: boolean }) => {
                                         Sign in
                                     </Link>
                                 </li>
-                                <li className="my-3 h-px w-full bg-gray-300" />
+                                <li className="my-3 h-px w-full bg-border" />
                                 <li>
                                     <Link
                                         onClick={() =>
@@ -84,7 +89,7 @@ const MobileNav = ({ isAuth }: { isAuth: boolean }) => {
                                         Dashboard
                                     </Link>
                                 </li>
-                                <li className="my-3 h-px w-full bg-gray-300" />
+                                <li className="my-3 h-px w-full bg-border" />
                                 <li>
                                     <Link
                                         className="flex items-center w-full font-semibold"

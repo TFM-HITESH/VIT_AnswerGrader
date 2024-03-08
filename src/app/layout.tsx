@@ -8,6 +8,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import 'simplebar-react/dist/simplebar.min.css'
 
 import { Toaster } from '@/components/ui/toaster'
+import { ThemeProvider } from '@/components/ThemeProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,7 +20,7 @@ export default function RootLayout({
     children: React.ReactNode
 }) {
     return (
-        <html lang="en" className="light">
+        <html lang="en">
             <Providers>
                 <body
                     className={cn(
@@ -27,9 +28,15 @@ export default function RootLayout({
                         inter.className,
                     )}
                 >
-                    <Toaster />
-                    <Navbar />
-                    {children}
+                    <ThemeProvider
+                        attribute="class"
+                        defaultTheme="system"
+                        enableSystem
+                    >
+                        <Toaster />
+                        <Navbar />
+                        {children}
+                    </ThemeProvider>
                 </body>
             </Providers>
         </html>
