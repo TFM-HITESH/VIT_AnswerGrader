@@ -36,7 +36,7 @@ const HowItWorks = () => {
       <h2 className='text-black sm:mb-[3.4rem] sm:text-5xl lg:text-6xl font-bold mt-10 font-sans xsm:text-4xl'>How It works <span className='text-blue-600'>?</span></h2>
             <VerticalTimeline lineColor="#1E88E5" animate={true}>
               {Data.map((project) => (
-          (<React.Fragment key={project.id} description={project.description}  date={project.date}>
+          (<React.Fragment key={project.id}>
               <VerticalTimelineElement visible contentStyle={{padding:"1.3rem 2rem"}}
               contentArrowStyle={{borderRight:'1rem solid black'}}
               iconStyle={{ visibility:'hidden'}}

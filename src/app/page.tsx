@@ -5,15 +5,16 @@ import { buttonVariants } from '@/components/ui/button'
 import Image from 'next/image'
 import Faqs from '@/components/FAQs'
 import HowItWorks from '@/components/HowItWorks'
+import Footer from '@/components/Footer'
 
 export default function Home() {
     return (
         <>
-        <div className='bg-gray-50'>
+        <div className='bg-gray-50 max-h-[100vh] max-w-[100vw]'>
 
             
-<div className='bg-[#fbe2e3] absolute top-[-6rem] right-[11rem] h-[31.25rem]  w-[31.25rem] rounded-full blur-[10rem] sm:w-[68.75rem]'></div>
-<div className='bg-[#dbd7fb] absolute top-[-1rem] left-[35rem] h-[31.25rem] w-[31.25rem] rounded-full blur-[10rem] sm:w-[68.75rem] md:left-[-33rem] lg:left-[-28rem] xl:left-[-15rem] 2xl:left-[-5rem]'></div>
+<div className='bg-[#fbe2e3] absolute top-[-6rem] right-[11rem] h-[31.25rem]  w-[31.25rem] rounded-full blur-[10rem] sm:w-[68.75rem] xsm:w-[0rem]'></div>
+<div className='bg-[#dbd7fb] absolute top-[-1rem] left-[35rem] h-[31.25rem] w-[31.25rem] rounded-full blur-[10rem] sm:w-[68.75rem] md:left-[-33rem] lg:left-[-28rem] xl:left-[-15rem] 2xl:left-[-5rem] xsm:w-[0rem]'></div>
             <MaxWidthWrapper className="mb-12 mt-28 sm:mt-40 flex flex-col items-center justify-center text-center">
                 <div className="mx-auto mb-4 flex max-w-fit items-center justify-center space-x-2 overflow-hidden rounded-full border border-gray-200 bg-white px-7 py-2 shadow-md backdrop-blur transition-all hover:border-gray-300 hover:bg-white/90">
                     <p className="text-sm font-semibold text-gray-700">
@@ -92,7 +93,7 @@ export default function Home() {
             </div>
 
             {/* Feature section */}
-            <div className="mx-auto mb-32 mt-32 max-w-5xl sm:mt-56">
+            <div className="mx-auto mb-32 mt-32 max-w-5xl sm:mt-56 xsm:px-2">
                 <div className="mb-12 px-6 lg:px-8">
                     <div className="mx-auto max-w-2xl sm:text-center">
                         <h2 className="mt-2 font-bold text-4xl  z-10  sm:text-5xl">
@@ -172,9 +173,11 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
+                </div>
                 <HowItWorks/>
                 <Faqs/>
-            </div>
+                <Footer/>
+            
             </div>
         </>
     )

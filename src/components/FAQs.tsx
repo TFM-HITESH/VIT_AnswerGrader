@@ -28,14 +28,14 @@ export default function Faqs() {
         <Accordion type="single" collapsible>
           {data.map((item) => (
             <AccordionItem
-              className="overflow-hidden border-b-0 mx-auto mt-4 rounded-2xl md:w-3/4 sm:w-1/2 bg-white-950 text-black border-4 border-blur"
+              className="overflow-hidden border-b-0 mx-auto mt-4 rounded-2xl md:w-[57%] sm:w-1/2 xsm:w-[74%] bg-white-950 text-black border-4 border-blur"
               key={item.id}
               value={item.question}
             >
-              <AccordionTrigger className="font-inherit p-5 h-16 flex items-center justify-between text-left text-lg leading-none hover:bg-mauve-2 ">
+              <AccordionTrigger className="font-inherit p-5 h-16 flex items-center justify-between text-left sm:text-lg leading-none hover:bg-mauve-2 xsm:text-xs ">
                 {item.question}
               </AccordionTrigger>
-              <AccordionContent className="overflow-hidden text-base p-5 pt-0 pb-2 text-left mb-2">
+              <AccordionContent className="overflow-hidden text-base p-5 pt-0 pb-2 text-left mb-2 xsm:text-[0.8rem] sm:text-base">
                 {item.answer}
               </AccordionContent>
             </AccordionItem>
