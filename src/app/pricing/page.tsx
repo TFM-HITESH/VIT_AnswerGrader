@@ -73,9 +73,9 @@ const Page = () => {
             ],
         },
         {
-            plan: 'Pro++',
+            plan: 'Pro+',
             tagline: 'For larger projects with higher needs.',
-            quota: PLANS.find((p) => p.slug === 'pro++')!.quota,
+            quota: PLANS.find((p) => p.slug === 'pro+')!.quota,
             features: [
                 {
                     text: '50 pages per PDF',
