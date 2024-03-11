@@ -14,8 +14,8 @@ export function absoluteUrl(path: string) {
 }
 
 export function constructMetadata({
-    title = 'ChatPDF - the SaaS for students',
-    description = 'ChatPDF is an open-source software to make chatting to your PDF files easy.',
+    title = 'QuickGrade.',
+    description = 'QuickGrade helps you evaluate your answer scripts without any biases.',
     image = '/thumbnail.png',
     icons = '/favicon.ico',
     noIndex = false,
