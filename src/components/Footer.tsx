@@ -49,7 +49,7 @@ const Footer = () => {
                             </div>
                         </div>
                         
-                <p className="tracking-widest">&copy; 2024 Vicuna Kouture Inc. All rights reserved.</p>
+                <p className="tracking-widest">&copy; 2024 QuickGrader Inc. All rights reserved.</p>
                 <p className="ml-1 flex justify-center items-center tracking-widest">Made with <IoIosHeart size={11} className="mr-1" /> by Team2</p>
             </div>
         </footer>

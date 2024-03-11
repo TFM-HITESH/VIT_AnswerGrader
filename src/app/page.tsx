@@ -58,18 +58,20 @@ export default function Home() {
                     </div>
 
                     <div>
-                   
-                                
-                                {/*<div className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
+                        <div className="mx-auto max-w-6xl px-6 lg:px-8">
+                            <div className="mt-16 flow-root sm:mt-24">
+                                <div className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
                                     <Image
-                                        src="/dashboard-preview.jpg"
+                                        src="/dashboard-preview.png"
                                         alt="product preview"
                                         width={1364}
                                         height={866}
                                         quality={100}
                                         className="rounded-md bg-white p-2 sm:p-8 md:p-20 shadow-2xl ring-1 ring-gray-900/10"
                                     />
-                        </div>*/}
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div className="mx-auto mb-32 mt-32 max-w-7xl sm:mt-56 xsm:px-2 sm:px-0">
@@ -155,11 +157,10 @@ export default function Home() {
                                 Step 3
                             </span>
                             <span className="text-xl font-semibold">
-                            Click the start evaluation button
+                            Click the start evaluation (Submit) button
                             </span>
                             <span className="mt-2 text-muted-foreground">
-                                {/*It&apos;s that simple. Try out ChatPDF today -
-                                it really takes less than a minute.*/}
+                                It&apos;s that simple. This begins the correction of your paper !
                             </span>
                         </div>
                     </li>
@@ -172,7 +173,7 @@ export default function Home() {
                             Sit back and relax. 
                             </span>
                             <span className="mt-2 text-muted-foreground">
-                            
+                                Bask in the glorious results that our AI agents provide to further your understanding academically !
                             </span>
                         </div>
                     </li>

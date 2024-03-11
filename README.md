@@ -1,4 +1,4 @@
-# ChatPDF - A Modern Fullstack SaaS-Platform
+# QuickGrade - A Modern Fullstack SaaS-Platform
 
 Built with the Next.js 14 App Router, tRPC, TypeScript, Prisma & Tailwind
 
