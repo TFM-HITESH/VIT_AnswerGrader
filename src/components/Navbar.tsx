@@ -23,13 +23,12 @@ const Navbar = () => {
                         href="/"
                         className="flex z-40 font-semibold font-sans"
                     >
-                        <span>ChatPDF.</span>
+                        <span>QuickGrade.</span>
                     </Link>
 
                     <MobileNav isAuth={!!user} />
 
                     <div className="hidden items-center space-x-4 sm:flex">
-                        <ThemeSwitch />
                         {!user ? (
                             <>
                                 <Link

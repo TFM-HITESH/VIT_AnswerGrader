@@ -21,7 +21,7 @@ const Page = () => {
         {
             plan: 'Free',
             tagline: 'For small side projects.',
-            quota: 10,
+            quota: 3 ,
             features: [
                 {
                     text: '5 pages per PDF',
@@ -72,6 +72,32 @@ const Page = () => {
                 },
             ],
         },
+        {
+            plan: 'Pro++',
+            tagline: 'For larger projects with higher needs.',
+            quota: PLANS.find((p) => p.slug === 'pro++')!.quota,
+            features: [
+                {
+                    text: '50 pages per PDF',
+                    footnote: 'The maximum amount of pages per PDF-file.',
+                },
+                {
+                    text: '20MB file size limit',
+                    footnote: 'The maximum file size of a single PDF file.',
+                },
+                {
+                    text: 'Mobile-friendly interface',
+                },
+                {
+                    text: 'Higher-quality responses',
+                    footnote:
+                        'Better algorithmic responses for enhanced content quality',
+                },
+                {
+                    text: 'Priority support',
+                },
+            ],
+        },
     ]
 
     return (
@@ -85,7 +111,7 @@ const Page = () => {
                     </p>
                 </div>
 
-                <div className="pt-12 grid grid-cols-1 gap-10 lg:grid-cols-2">
+                <div className="pt-12 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
                     <TooltipProvider>
                         {pricingItems.map(
                             ({ plan, tagline, quota, features }) => {
